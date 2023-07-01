@@ -1,4 +1,4 @@
-name: Docker
+name: Docker # Build Keycloak Docker image for Mafdet
 on:
   push:
     branches:
