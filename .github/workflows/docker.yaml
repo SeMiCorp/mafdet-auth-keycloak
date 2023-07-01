@@ -61,6 +61,8 @@ jobs:
           use-pro: 'true'
         env:
           LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
+          DEFAULT_REGION: 'eu-west-2'
+          AWS_DEFAULT_REGION: 'eu-west-2'
 
       - name: Create S3 local bucket
         run: |
