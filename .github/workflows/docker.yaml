@@ -68,10 +68,6 @@ jobs:
         run: |
           awslocal s3api create-bucket --region eu-west-2 --bucket terraform --endpoint-url http://localhost:${{ job.services.localstack.ports[4566] }} --create-bucket-configuration LocationConstraint=eu-west-2
 
-      - name: Preview awslocal config
-        run: |
-          awslocal configure list
-
       - uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Init
