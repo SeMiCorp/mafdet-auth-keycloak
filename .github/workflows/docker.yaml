@@ -45,16 +45,26 @@ jobs:
         run: (docker logs -f keycloak &) | grep -m 1 "Admin console listening on"
         timeout-minutes: 1
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      # - name: Configure AWS credentials
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.mafdet_KEYCLOAK_DEPLOY_BOT_ACCESS_KEY_ID }}
+      #     aws-secret-access-key: ${{ secrets.mafdet_KEYCLOAK_DEPLOY_BOT_SECRET_ACCESS_KEY }}
+      #     aws-region: eu-west-2
+
+      - name: Start LocalStack
+        uses: LocalStack/setup-localstack@v0.1.2
         with:
-          aws-access-key-id: ${{ secrets.mafdet_KEYCLOAK_DEPLOY_BOT_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.mafdet_KEYCLOAK_DEPLOY_BOT_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-2
+          image-tag: 'latest'
+          install-awslocal: 'true'
+          configuration: DEBUG=1
+          use-pro: 'true'
+        env:
+          LOCALSTACK_API_KEY: ${{ secrets.LOCALSTACK_API_KEY }}
 
       - name: Create S3 local bucket
         run: |
-          aws s3api create-bucket --bucket terraform --endpoint-url http://localhost:${{ job.services.localstack.ports[4566] }} --create-bucket-configuration LocationConstraint=eu-west-2
+          awslocal s3 mb s3://terraform
 
       - uses: hashicorp/setup-terraform@v2
 
