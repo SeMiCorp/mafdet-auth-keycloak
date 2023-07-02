@@ -20,8 +20,8 @@ jobs:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
       TF_VAR_mafdet_realm: mafdet
-      #TF_VAR_mafdet_url: https://web.mafdet.localhost
-      TF_VAR_mafdet_url: https://localhost:3000
+      TF_VAR_mafdet_url: https://web.callisto.localhost
+      #TF_VAR_mafdet_url: https://localhost:3000
       TF_VAR_include_test_users: true
       DOCKER_REGISTRY: quay.io/semicorp
       DOCKER_REPO: mafdet-auth-keycloak
