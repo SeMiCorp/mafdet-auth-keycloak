@@ -1,4 +1,4 @@
-name: Keycloak AMD and ARM # (Build default Keycloak image for AMD and ARM)
+name: Build Keycloak AMD and ARM Docker Image # (Build default Keycloak image for AMD and ARM)
 on:
   workflow_dispatch:
     inputs:

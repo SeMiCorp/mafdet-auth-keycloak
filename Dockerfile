@@ -1,5 +1,5 @@
 ARG image
 FROM --platform=linux/amd64 $image as committed
 
-FROM --platform=linux/arm64 quay.io/sewerynmi/keycloak:15.0.2
+FROM --platform=linux/arm64 quay.io/semicorp/mafdet-keycloak:15.0.2
 COPY --from=committed /opt/jboss/ /opt/jboss/
